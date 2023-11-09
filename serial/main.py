@@ -141,4 +141,5 @@ def main(N,r=1000):
 
 if __name__=="__main__":
 	N=int(sys.argv[1])
+	print(sys.argv)
 	main(N)

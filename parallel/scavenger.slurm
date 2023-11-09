@@ -5,6 +5,7 @@
 #SBATCH --export=ALL
 #SBATCH --mail-user=jcm10@rice.edu
 #SBATCH --mail-type=ALL
+#SBATCH --array=0-49
 
 module load GCCcore/8.3.0
 module load Python/3.7.2

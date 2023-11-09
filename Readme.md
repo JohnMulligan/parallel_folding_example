@@ -122,7 +122,7 @@ Checkpointing is a way that users handle the fact that they do not have unlimite
 
 ### scavenger.slurm
 
-This allows you to submit a whole bunch of jobs at once. You invoke this like ```sbatch scavenger.slurm 10 --array=0-49```, which would try a 10-sided figure with 50 worker processes, those workers having indices 0 through 49.
+This allows you to submit a whole bunch of jobs at once. Set your job array in ```scavenger.slurm```, and invoke this like ```sbatch scavenger.slurm 10```, which would try a 10-sided figure with 50 worker processes, those workers having indices 0 through 49.
 
 #### What is slurm, and what is sbatch?
 
