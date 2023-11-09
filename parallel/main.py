@@ -145,7 +145,7 @@ def main(N,worker_number,number_of_workers,r=1000):
 	#the iterator anymore
 	iter_step=0
 	
-	## 4. We're now wrapping up our work inside the batch that this worker is assigned
+	## 4. We're now wrapping our work inside the batch that this worker is assigned
 	print(this_work_batch)
 	for this_step_idx in this_work_batch:
 		print(this_step_idx)
