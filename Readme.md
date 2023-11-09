@@ -57,7 +57,7 @@ This script is used by all the other processes as it builds the object we're ana
 
 You can call it like ```python make_graph.py 10``` to make a 10-sided shape. It accepts an optional boolean argument in position 2 (default is false) which, if true, will render a visual of the starting state, like ```python make_graph.py 10 true```:
 
-![Sample image](/assets/sample_decagon.png)
+![Sample image](/assets/sample_folded_decagon.png)
 
 So what we have here is a NetworkX graph of vertices with x,y,z coords and then edges connecting them. We'll be manipulating these nets along particular vertices as though they were rigid surfaces -- like Origami.
 
