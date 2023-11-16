@@ -175,7 +175,7 @@ def main(N,r=1000):
 	return G
 	
 
-def draw_graph(G):
+def draw_graph(G,title=None):
 	import plotly.graph_objs as go
 	
 	node_xyz = np.array([G.nodes[v]['pos'] for v in sorted(G)])
@@ -213,7 +213,8 @@ def draw_graph(G):
 		z=Ze,
 		mode='lines',
 		line=dict(color='rgb(125,125,125)', width=3),
-		hoverinfo='none'
+		hoverinfo='none',
+		name="Edges"
 	)
 	
 	trace2=go.Scatter3d(
@@ -222,12 +223,19 @@ def draw_graph(G):
 		z=Zn,
 		mode='markers',
 		text=labels,
-		hoverinfo='text'
+		hoverinfo='text',
+		name="Vertices"
 	)
 
 	data=[trace1,trace2]
-	fig=go.Figure(data=data)
 	
+	fig=go.Figure(data=data)
+
+	if title is not None:
+		fig.update_layout(
+			title=title
+		)
+
 	fig.show()
 
 if __name__=="__main__":

@@ -40,6 +40,14 @@ So we want to come up with a creative way of parallelizing this work. I like thi
 
 This allows us to parallelize massively.
 
+## Visualizing results
+
+In a serial run, you'll get matches written out to a file like ```outputs/{{N}}/matches.txt``` where N is the number of sides on your polygon. In a parallel run, they'll be written out to files like ```ouputs/{{N}}/{{P}}.txt``` where P is the task id in your high-throughput job that generated it.
+
+To render all of the matches that your process found along the way, use, in either folder, ```python visualize_results.py {{N}}```. It will gather these up and render the as 3d graphs in your browser.
+
+I have a sample file in ```serial/outputs/12/matches.txt```, which you can test by running ```python visualize_results.py 12```.
+
 ## Serial Folder
 
 This group of files shows you the basics of the experiment, running on a single thread
