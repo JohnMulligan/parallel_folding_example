@@ -1,4 +1,7 @@
 mpmath
 networkx
 numpy
+packaging
+plotly
 sympy
+tenacity
