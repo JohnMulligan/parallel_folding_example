@@ -49,7 +49,7 @@ def evaluate_folding(G,closeness_threshold):
 		mean_close_neighborings=None
 	return close_neighborings,mean_close_neighborings
 
-def main(N,r=1000):
+def main(N,r=1000,graphit=True):
 	
 	#R is the radius of the circle we draw to make our polygon
 	G=make_graph.main(N,r)
@@ -99,7 +99,6 @@ def main(N,r=1000):
 	iter_step=0
 	for this_folding in possible_folds:
 		print("+++this folding:",this_folding)
-		matches=[]
 		folds_completed=0
 		for folding_angle in known_angles:
 			loop_st=time.time()
@@ -116,22 +115,21 @@ def main(N,r=1000):
 				print("->match at",folding_angle,"=",mean_close_neighborings)
 				close_neighborings_list=sorted(list(close_neighborings.keys()))
 				close_neighborings_id="*".join(close_neighborings_list)
-				matches.append({
+				thismatch={
 					"close_neighbors":close_neighborings_id,
 					"close_neighborings_count":len(close_neighborings),
 					"angle":folding_angle,
 					"mean_close_neighborings":mean_close_neighborings,
 					"this_folding":this_folding,
 					"this_folding_np_id":"_".join([str(i) for i in [N,iter_step]])
-				})
-				make_graph.draw_graph(G)
+				}
+				if graphit:
+					make_graph.draw_graph(G)
+				e=open('outputs/%s/matches.txt' %(str(N)),'a')
+				e.write("\n\n"+json.dumps(thismatch))
+				e.close()
 			print("loop time-->",time.time()-loop_st)
 			iter_step+=1
-		if len(matches)>0:
-			e=open('outputs/%s/matches.txt' %(str(N)),'a')
-			for thismatch in matches:
-				e.write("\n\n"+json.dumps(thismatch))
-			e.close()
 		
 		seconds_per_iter=(time.time()-st)/iter_step
 		print("%d of %d steps completed in %d seconds. estimated %d minutes remaining" %(iter_step, total_work_list_length, int(time.time()-st),seconds_per_iter*(total_work_list_length-iter_step)/60))
@@ -141,5 +139,16 @@ def main(N,r=1000):
 
 if __name__=="__main__":
 	N=int(sys.argv[1])
-	print(sys.argv)
-	main(N)
+	if not N%2==0:
+		print("N must be even. You supplied",N)
+		exit()
+	try:
+		graphit=sys.argv[2]
+		if graphit.lower().strip()=="false":
+			graphit=False
+		else:
+			graphit=True
+	except:
+		graphit=True
+	
+	main(N,graphit=graphit)

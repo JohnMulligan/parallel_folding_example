@@ -117,6 +117,8 @@ How does that parallelization work? Take a look at the new comments in main.py Y
 
 We also use *checkpointing* to keep track of which simulations we've run, so that we can effortlessly pick up where we left off if the job didn't finish.
 
+	Note: we also added a ```main_multiproc.py``` version of this, which uses Python's multiprocessing package. It allows us to demonstrate how the job parallelizes on a PC, without needing a cluster and job scheduler.
+
 ### checkpointing
 
 Checkpointing is a way that users handle the fact that they do not have unlimited access to the pool of resources provided by a cluster. No matter what system mediates your access, it will cut you off at a certain point, either by:
